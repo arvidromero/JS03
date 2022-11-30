@@ -1,56 +1,47 @@
-//Informacion de fechas
-const fechaNumero = document.getElementById('fechaNumero');
-const fechaTexto = document.getElementById('fechaTexto');
-const fechaMM = document.getElementById('fechaMM');
-const fechaYY = document.getElementById('fechaYY');
+// Info date
+const dateNumber = document.getElementById('dateNumber');
+const dateText = document.getElementById('dateText');
+const dateMonth = document.getElementById('dateMonth');
+const dateYear = document.getElementById('dateYear');
 
-//Contenedor de Tareas
-const contenedorTareas = document.getElementById("contenedorDeTareas");
+// Tasks Container
+const tasksContainer = document.getElementById('tasksContainer');
 
-//Funcion para set de fechas
-const setFecha = () => {
-    const fecha = new Date();
-    fechaNumero.textContent = fecha.toLocaleString("es",{ day: 'numeric' });
-    fechaTexto.textContent = fecha.toLocaleString("es",{ weekday: 'long' });
-    fechaMM.textContent = fecha.toLocaleString("es",{ month: 'short' });
-    fechaYY.textContent = fecha.toLocaleString("es",{ year: 'numeric' });
+const setDate = () => {
+    const date = new Date();
+    dateNumber.textContent = date.toLocaleString('es', { day: 'numeric' });
+    dateText.textContent = date.toLocaleString('es', { weekday: 'long' });
+    dateMonth.textContent = date.toLocaleString('es', { month: 'short' });
+    dateYear.textContent = date.toLocaleString('es', { year: 'numeric' });
 };
 
-
-//Funcion para agregar tarea
-const agregaNuevaTarea = event => {
+const addNewTask = event => {
     event.preventDefault();
-    const {value} = event.target.textoTarea;
-    if (!value) return;
-    const tarea = document.createElement('div');
-    tarea.classList.add('tarea', 'bordeRedondeado');
-    tarea.addEventListener('click', cambiarEstadoTarea)
-    tarea.textContent=value;
-    contenedorTareas.prepend(tarea);
+    const { value } = event.target.taskText;
+    if(!value) return;
+    const task = document.createElement('div');
+    task.classList.add('task', 'roundBorder');
+    task.addEventListener('click', changeTaskState)
+    task.textContent = value;
+    tasksContainer.prepend(task);
     event.target.reset();
 };
 
-
-//Funcion para cambiar estado de Tareas
-const cambiarEstadoTarea = event => {
+const changeTaskState = event => {
     event.target.classList.toggle('done');
 };
 
-//Funcion para ordenar
-const ordenar = () =>{
-    const tareasHechas = [];
-    const tareasPorHacer = [];
-    contenedorTareas.childNodes.forEach (el => {
-        el.classList.contains('done') ? tareasHechas.push(el) : tareasPorHacer.push(el)
+const order = () => {
+    const done = [];
+    const toDo = [];
+    tasksContainer.childNodes.forEach( el => {
+        el.classList.contains('done') ? done.push(el) : toDo.push(el)
     })
-    return[...tareasPorHacer, ...tareasHechas];
+    return [...toDo, ...done];
 }
 
-const ordenarTareas = () => {
-    ordenar().forEach(el => contenedorTareas.appendChild(el))
+const renderOrderedTasks = () => {
+    order().forEach(el => tasksContainer.appendChild(el))
 }
 
-
-setFecha();
-
-
+setDate();

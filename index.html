@@ -1,34 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrega #3</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700&family=Roboto:wght@100;300;500;900&display=swap" rel="stylesheet">
+    <title>Entrega No 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <script src="script.js" type="text/javascript" defer></script>
 </head>
 <body>
-    <div class="lst bordeRedondo">
-        <div class="fecha">
-            <div class="fechaDerecha"></div>
-                <div id="fechaNumero"></div>
+    <div class="list roundBorder">
+        <div class="date">
+            <div class="dateRight">
+                <div id="dateNumber"></div>
                 <div>
-                    <div id="fechaMM"></div>
-                    <div id="fechaYY"></div>
+                    <div id="dateMonth"></div>
+                    <div id="dateYear"></div>
                 </div>
-                <div id="fechaTexto"></div>
-        </div>        
+            </div>
+            <div id="dateText"></div>
+        </div>
+        <form onsubmit="addNewTask(event)" >
+            <input type="text" name="taskText" autocomplete="off" placeholder="Nueva tarea" class="roundBorder">
+            <button type="submit" class="addTaskButton">+</button>
+            <button type="button" class="orderButton roundBorder" onclick="renderOrderedTasks()">Ordenar</button>
+        </form>
+        <div id="tasksContainer"></div>
     </div>
-
-    <form onsubmit="agregaNuevaTarea(event)">
-        <input type="text" name="textoTarea" autocomplete="off" placeholder="Nueva Tarea" class="bordeRedondo">
-        <button type="submit" class="btnNuevaTarea">+</button>
-        <button type="button" class="btnOrdenar bordeRedondo" onclick="ordenarTareas()">Ordenar tareas</button>
-    </form>
-
-    <div id="contenedorDeTareas"></div>
-
-
-    <script src="script.js"></script>
 </body>
 </html>
